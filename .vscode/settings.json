@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "stdbool.h": "c",
+        "math.h": "c",
+        "ics_thomson_approx.h": "c",
+        "errno.h": "c"
+    }
+}
