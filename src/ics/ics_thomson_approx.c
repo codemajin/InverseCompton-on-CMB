@@ -36,7 +36,7 @@
 //==============================================================================
 // File Scope Function Prototype
 //==============================================================================
-static inline F64 toBeta(const F64 gamma);
+static inline F128 toBeta(const F128 gamma);
 
 
 
@@ -54,66 +54,66 @@ static inline F64 toBeta(const F64 gamma);
 //! \param[in]  gamma - Electron Lorentz Factor
 //! \return     ICS flux on isotropic photon using Thomson approximation
 //******************************************************************************
-F64 IcsThomson_CalcFluxIso(const F64 efin, const F64 einit, const F64 gamma)
+F128 IcsThomson_CalcFluxIso(const F128 efin, const F128 einit, const F128 gamma)
 {
-    register F64 flux;
-    F64 tmp[5];
-    register F64 beta, beta2, beta6, gamma2, gamma4;
-    const F64 R0 = CLASIC_ELECTRON_RADIUS;
-    const F64 C = LIGHT_SPEED;
-    
+    register F128 flux;
+    F128 tmp[5];
+    F128 beta, beta2, beta6, gamma2, gamma4;
+    const F128 R0 = (F128)CLASIC_ELECTRON_RADIUS;
+    const F128 C = (F128)LIGHT_SPEED;
+
     beta = toBeta(gamma);
     beta2 = beta * beta;
     beta6 = beta2 * beta2 * beta2;
     gamma2 = gamma * gamma;
     gamma4 = gamma2 * gamma2;
-    
+
     //------------------------------------------------------
     // In case of photon energy lossing after the scattering
     //------------------------------------------------------
     if ((efin >= IcsThomson_MinEnergyIso(einit, gamma)) && (efin < einit)) {
-        tmp[0]  = (beta * (beta2 + 3.0)) + ((9.0 - 4.0 * beta2) / gamma2);
-        tmp[0] *= (1.0 + beta) * efin / einit;
-        
-        tmp[1]  = (beta * (beta2 + 3.0)) - ((9.0 - 4.0 * beta2) / gamma2);
-        tmp[1] *= (1.0 - beta);
-        
-        tmp[2]  = log((efin * (1.0 + beta)) / (einit * (1.0 - beta)));
-        tmp[2] *= (3.0 - beta2) * (1.0 + (efin / einit));
-        tmp[2] *= (2.0 / gamma2);
-        
+        tmp[0]  = (beta * (beta2 + 3.0Q)) + ((9.0Q - 4.0Q * beta2) / gamma2);
+        tmp[0] *= (1.0Q + beta) * efin / einit;
+
+        tmp[1]  = (beta * (beta2 + 3.0Q)) - ((9.0Q - 4.0Q * beta2) / gamma2);
+        tmp[1] *= (1.0Q - beta);
+
+        tmp[2]  = logq((efin * (1.0Q + beta)) / (einit * (1.0Q - beta)));
+        tmp[2] *= (3.0Q - beta2) * (1.0Q + (efin / einit));
+        tmp[2] *= (2.0Q / gamma2);
+
         tmp[3]  = einit / (gamma4 * efin);
-        
+
         tmp[4]  = (efin * efin) / (gamma4 * einit * einit);
-        
+
         flux  = tmp[0] + tmp[1] - tmp[2] - tmp[3] + tmp[4];
-        flux *= MATH_PI * R0 * R0 * C;
-        flux /= 4.0 * beta6 * gamma2 * einit;
+        flux *= (F128)MATH_PI * R0 * R0 * C;
+        flux /= 4.0Q * beta6 * gamma2 * einit;
     }
     //------------------------------------------------------
     // In case of photon energy increasing after the scattering
     //------------------------------------------------------
     else if ((einit <= efin) && (efin <= IcsThomson_MaxEnergyIso(einit, gamma))) {
-        tmp[0]  = (beta * (beta2 + 3.0)) + ((9.0 - 4.0 * beta2) / gamma2);
-        tmp[0] *= (1.0 + beta);
-        
-        tmp[1]  = (beta * (beta2 + 3.0)) - ((9.0 - 4.0 * beta2) / gamma2);
-        tmp[1] *= (1.0 - beta) * efin / einit;
-        
-        tmp[2]  = log((einit * (1.0 + beta)) / (efin * (1.0 - beta)));
-        tmp[2] *= (3.0 - beta2) * (1.0 + (efin / einit));
-        tmp[2] *= (2.0 / gamma2);
-        
+        tmp[0]  = (beta * (beta2 + 3.0Q)) + ((9.0Q - 4.0Q * beta2) / gamma2);
+        tmp[0] *= (1.0Q + beta);
+
+        tmp[1]  = (beta * (beta2 + 3.0Q)) - ((9.0Q - 4.0Q * beta2) / gamma2);
+        tmp[1] *= (1.0Q - beta) * efin / einit;
+
+        tmp[2]  = logq((einit * (1.0Q + beta)) / (efin * (1.0Q - beta)));
+        tmp[2] *= (3.0Q - beta2) * (1.0Q + (efin / einit));
+        tmp[2] *= (2.0Q / gamma2);
+
         tmp[3]  = einit / (gamma4 * efin);
-        
+
         tmp[4]  = (efin * efin) / (gamma4 * einit * einit);
-        
+
         flux  = tmp[0] + tmp[1] - tmp[2] + tmp[3] - tmp[4];
-        flux *= MATH_PI * R0 * R0 * C;
-        flux /= 4.0 * beta6 * gamma2 * einit;
+        flux *= (F128)MATH_PI * R0 * R0 * C;
+        flux /= 4.0Q * beta6 * gamma2 * einit;
     }
     else {
-        flux = 0.0;
+        flux = 0.0Q;
     }
     
     return flux;
@@ -132,13 +132,13 @@ F64 IcsThomson_CalcFluxIso(const F64 efin, const F64 einit, const F64 gamma)
 //! \param[in]  gamma - Electron Lorentz Factor
 //! \return     Minimum energy of scattered photon
 //******************************************************************************
-F64 IcsThomson_MinEnergyIso(const F64 einit, const F64 gamma)
+F128 IcsThomson_MinEnergyIso(const F128 einit, const F128 gamma)
 {
-    F64 emin;
-    F64 beta;
+    F128 emin;
+    F128 beta;
 
     beta  = toBeta(gamma);
-    emin  = einit * (1.0 - beta) / (1.0 + beta);
+    emin  = einit * (1.0Q - beta) / (1.0Q + beta);
 
     return emin;
 }
@@ -156,13 +156,13 @@ F64 IcsThomson_MinEnergyIso(const F64 einit, const F64 gamma)
 //! \param[in]  gamma - Electron Lorentz Factor
 //! \return     Maximum energy of scattered photon
 //******************************************************************************
-F64 IcsThomson_MaxEnergyIso(const F64 einit, const F64 gamma)
+F128 IcsThomson_MaxEnergyIso(const F128 einit, const F128 gamma)
 {
-    F64 emax;
-    F64 beta;
+    F128 emax;
+    F128 beta;
 
     beta = toBeta(gamma);
-    emax = einit * (1.0 + beta) / (1.0 - beta);
+    emax = einit * (1.0Q + beta) / (1.0Q - beta);
 
     return emax;
 }
@@ -178,12 +178,12 @@ F64 IcsThomson_MaxEnergyIso(const F64 einit, const F64 gamma)
 //! \param[in]  gamma  - Electron Lorentz Factor
 //! \return     Adimensional electron velocity corresponding Lorentz factor
 //******************************************************************************
-static inline F64 toBeta(const F64 gamma)
+static inline F128 toBeta(const F128 gamma)
 {
-    F64 beta;
+    F128 beta;
 
-    beta  = sqrt(gamma + 1.0);
-    beta *= sqrt(gamma - 1.0);
+    beta  = sqrtq(gamma + 1.0Q);
+    beta *= sqrtq(gamma - 1.0Q);
     beta /= gamma;
 
     return beta;

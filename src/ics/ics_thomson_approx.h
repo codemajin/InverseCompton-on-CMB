@@ -45,27 +45,27 @@ extern "C" {
  * @param efin  Scattered Photon Energy [eV]
  * @param einit Incident Photon Energy [eV]
  * @param gamma Electron Lorentz Factor
- * @return F64  ICS flux on isotropic photon using Thomson approximation
+ * @return F128  ICS flux on isotropic photon using Thomson approximation
  */
-extern F64 IcsThomson_CalcFluxIso(const F64 efin, const F64 einit, const F64 gamma);
+extern F128 IcsThomson_CalcFluxIso(const F128 efin, const F128 einit, const F128 gamma);
 
 /**
  * @brief       Calaulates the minimum energy of scattered photon in case of
  *              Thomson approximation and isotropic photon
  * @param einit Incident Photon Energy [eV]
  * @param gamma Electron Lorentz Factor
- * @return F64  Minimum energy of scattered photon
+ * @return F128  Minimum energy of scattered photon
  */
-extern F64 IcsThomson_MinEnergyIso(const F64 einit, const F64 gamma);
+extern F128 IcsThomson_MinEnergyIso(const F128 einit, const F128 gamma);
 
 /**
  * @brief       Calaulates the maximum energy of scattered photon in case of
  *              Thomson approximation and isotropic photon
  * @param einit Incident Photon Energy [eV]
  * @param gamma Electron Lorentz Factor
- * @return F64  Maximum energy of scattered photon
+ * @return F128  Maximum energy of scattered photon
  */
-extern F64 IcsThomson_MaxEnergyIso(const F64 einit, const F64 gamma);
+extern F128 IcsThomson_MaxEnergyIso(const F128 einit, const F128 gamma);
 
 
 

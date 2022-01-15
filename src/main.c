@@ -284,15 +284,26 @@ static F64 icsFluxIntegrand(const F64 einit, const F64 gamma)
         flux *= IcsJones_CalcFluxIso(emittedEnergy, einit, gamma);
     }
     else {
-        flux *= IcsThomson_CalcFluxIso(emittedEnergy, einit, gamma);
+        flux *= (F64)IcsThomson_CalcFluxIso((F128)emittedEnergy, (F128)einit, (F128)gamma);
     }
 
     return flux;
 }
 
+
+//******************************************************************************
+//! \breif      Entry point.
+//! \remark
+//!
+//! \callgraph
+//!
+//! \param[in]  argc    Count of command-line arguments
+//! \param[in]  argv    Values of command-line arguments
+//! \return     EXIT_SUCCESS
+//******************************************************************************
 int main(int argc, char* argv[])
 {
-    INTEGRATION_RANGE gammaRange, energyRange;
+    INTEGRATION_RANGE gamma_range, energy_range;
     F64 lower, upper, lower_log, upper_log, energy_log, flux;
     S32 n_calc_points, i;
     const CHAR* file_name;
@@ -309,12 +320,12 @@ int main(int argc, char* argv[])
     n_calc_points = (S32)((upper_log - lower_log) / FLUX_CALC_STRIDE_LOG);
 
     // Integration Range
-    energyRange.Lower = INTEGRATION_RANGE_EINIT_LOWER;
-    energyRange.Upper = INTEGRATION_RANGE_EINIT_UPPER;
-    energyRange.Iteration = INTEGRATION_RANGE_EINIT_ITERATION;
-    gammaRange.Lower = INTEGRATION_RANGE_GAMMA_LOWER;
-    gammaRange.Upper = gammaMax * INTEGRATION_RANGE_GAMMA_UPPER_PLUS;
-    gammaRange.Iteration = INTEGRATION_RANGE_GAMMA_ITERATION;
+    energy_range.Lower = INTEGRATION_RANGE_EINIT_LOWER;
+    energy_range.Upper = INTEGRATION_RANGE_EINIT_UPPER;
+    energy_range.Iteration = INTEGRATION_RANGE_EINIT_ITERATION;
+    gamma_range.Lower = INTEGRATION_RANGE_GAMMA_LOWER;
+    gamma_range.Upper = gammaMax * INTEGRATION_RANGE_GAMMA_UPPER_PLUS;
+    gamma_range.Iteration = INTEGRATION_RANGE_GAMMA_ITERATION;
 
     // File
     file_name = getFileName(icsMode);
@@ -329,7 +340,7 @@ int main(int argc, char* argv[])
     // ICS Flux Calculation Loop
     for (i = 0, energy_log = lower_log; i < n_calc_points; i++, energy_log += FLUX_CALC_STRIDE_LOG) {
         emittedEnergy = pow(10.0, energy_log);
-        flux = NumericsTrapezoidal_Inetegrate2d(&icsFluxIntegrand, (const INTEGRATION_RANGE *)&energyRange, (const INTEGRATION_RANGE *)&gammaRange);
+        flux = NumericsTrapezoidal_Inetegrate2d(&icsFluxIntegrand, (const INTEGRATION_RANGE *)&energy_range, (const INTEGRATION_RANGE *)&gamma_range);
 
         printf("[%03d/%03d] %.8E %.8E\n", i + 1, n_calc_points, emittedEnergy, flux);
         fprintf(fp, "%.8E %.8E\n", emittedEnergy, flux);

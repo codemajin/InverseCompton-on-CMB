@@ -33,6 +33,7 @@ extern "C" {
 // Header File Include
 //==============================================================================
 #include <stdint.h>
+#include <quadmath.h>
 
 
 
@@ -79,6 +80,7 @@ typedef int64_t                     S64;                    //!< 64-bit Signed I
 typedef uint64_t                    U64;                    //!< 64-bit Unsigned Integer
 typedef float                       F32;                    //!< Single Precision Floating Point
 typedef double                      F64;                    //!< Double Precision Floating Point
+typedef __float128                  F128;                   //!< Quad-Precision Floating Point
 
 
 
