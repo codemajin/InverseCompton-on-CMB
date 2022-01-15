@@ -61,7 +61,7 @@ F64 IcsJones_CalcFluxIso(const F64 efin, const F64 einit, const F64 gamma)
     //------------------------------------------------------
     // In case of photon energy lossing after the scattering
     //------------------------------------------------------
-    if ((efin > IcsJones_MinEnegyIso(einit, gamma)) && (efin < gamma)) {
+    if ((efin > IcsJones_MinEnegyIso(einit, gamma)) && (efin < einit)) {
         tmp[0]  = (4.0 * gamma2 * efin) / einit;
         tmp[0] -=  1.0;
 
