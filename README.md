@@ -3,6 +3,7 @@
 Spectral calculation of relativistic electron and CMB inverse Compton radiation
 
 <img src="https://scx2.b-cdn.net/gfx/news/hires/2014/1-crabnebula.jpg" alt="50" style="zoom:100%;" />
+
 *The Crab Nebula. Credit: NASA*
 
 ## Inverse Compton Model
@@ -32,13 +33,13 @@ Assuming that the energy of the photon before scattering is $\varepsilon$, the e
 - Case where photon energy decreases after scattering :  $\displaystyle {(1-\beta)\hat{\varepsilon} \over 1+\beta }\leq \varepsilon_1 \leq\hat{\varepsilon}$
 
 $$
-{dN_{1isoL} \over dt_1 d\varepsilon_1} &=& {\pi nr_0^2 c\over 4\beta^6
+{dN_{1isoL} \over dt_1 d\varepsilon_1} = {\pi nr_0^2 c\over 4\beta^6
  \gamma^2 \hat{\varepsilon}} \biggl( {\varepsilon_1 \over
  \hat{\varepsilon}} (1+\beta )[\beta (\beta^2 +3)+{1\over \gamma^2
- }(9-4\beta^2 )] \nonumber \\
-&\ & +(1-\beta )[\beta (\beta^2 +3)-{1\over \gamma^2
- }(9-4\beta^2 )] -{2\over \gamma^2 } \nonumber \\
-&\ & \cdot (3 -\beta^2 )(1+{\varepsilon_1 \over
+ }(9-4\beta^2 )]
+ +(1-\beta )[\beta (\beta^2 +3)-{1\over \gamma^2
+ }(9-4\beta^2 )] -{2\over \gamma^2 } 
+ \cdot (3 -\beta^2 )(1+{\varepsilon_1 \over
  \hat{\varepsilon}}) \ln \bigl[{\varepsilon_1 (1+\beta )\over
  \hat{\varepsilon} (1-\beta)} \bigr] -{\hat{\varepsilon} \over \gamma^4
  \varepsilon_1} +{\varepsilon_1^2 \over \gamma^4 \hat{\varepsilon}^2} \biggr)
@@ -47,13 +48,13 @@ $$
 - Case where photon energy rises after scattering :  $\displaystyle \hat{\varepsilon} \leq \varepsilon_1 \leq {(1+\beta)\hat{\varepsilon}\over 1-\beta}$
 
 $$
-{dN_{1isoR} \over dt_1 d\varepsilon_1} &=& {\pi nr_0^2 c\over 4\beta^6
+{dN_{1isoR} \over dt_1 d\varepsilon_1} = {\pi nr_0^2 c\over 4\beta^6
  \gamma^2 \hat{\varepsilon}} \biggl( (1+\beta )[\beta (\beta^2
- +3)+{1\over \gamma^2 }(9-4\beta^2 )] \nonumber \\
-&\ & +{\varepsilon_1 \over
+ +3)+{1\over \gamma^2 }(9-4\beta^2 )] 
+ +{\varepsilon_1 \over
  \hat{\varepsilon}}(1-\beta )[\beta (\beta^2 +3)-{1\over \gamma^2
- }(9-4\beta^2 )] -{2\over \gamma^2 } \nonumber \\
-&\ & \cdot (3 -\beta^2 )(1+{\varepsilon_1 \over
+ }(9-4\beta^2 )] -{2\over \gamma^2 }
+ \cdot (3 -\beta^2 )(1+{\varepsilon_1 \over
  \hat{\varepsilon}}) \ln \bigl[{\hat{\varepsilon} (1+\beta )\over
  \varepsilon_1 (1-\beta)} \bigr] +{\hat{\varepsilon} \over \gamma^4
  \varepsilon_1} -{\varepsilon_1^2 \over \gamma^4 \hat{\varepsilon}^2} \biggr)
