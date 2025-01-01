@@ -10,7 +10,7 @@ Spectral calculation of relativistic electron and CMB inverse Compton radiation
 
 ### The ICS onto a monochromatic and isotropic photon spectrum
 
-####  Jones Aproxomation
+####  Jones Approximation
 
 Assuming that the energy of the photon before scattering is $\alpha$, the energy after scattering is $\alpha_1$, and the Lorentz factor of the electron is $\gamma$、 the spectrum is as follows. The energy of photons is normalized by the rest mass energy of electrons.
 
@@ -29,7 +29,7 @@ q = {\alpha_1 \over 4\alpha \gamma^2 (1- \alpha_1 / \gamma )}, \hspace{7mm} {1\o
 \end{eqnarray}
 $$
 
-#### Thomson Approxomation
+#### Thomson Approximation
 
 Assuming that the energy of the photon before scattering is $\varepsilon$, the energy after scattering is $\varepsilon_1$, and the Lorentz factor of the electron is $\gamma$、 the spectrum is as follows. The energy of photons is normalized by the rest mass energy of electrons.
 
@@ -88,7 +88,7 @@ F_{\varepsilon_1} = {1\over 4\pi D^2}
  4\pi}\int_{\Omega}{dN_1 \over dt_1 d{\varepsilon_1}}d\Omega
 $$
 
-## Jones approxomation vs. Thomson approxomation
+## Jones approximation vs. Thomson approximation
 
 By comparing the Jones approximation and the Thomson approximation, the following can be clearly seen:
 
