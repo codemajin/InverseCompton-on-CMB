@@ -23,7 +23,10 @@ $$
 - Case where photon energy rises after scattering : $\displaystyle \alpha \leq \alpha_1 \leq {4\alpha \gamma^2 \over (1+4\alpha \gamma)}$
 
 $$
-{dN_1 \over dt_1 d\alpha_1} = {2\pi r_0^2 c\over \alpha \gamma^2} \biggl[ 2q\ln q +(1+2q)(1-q)+{1\over 2}{(4\alpha \gamma q)^2 \over (1+4\alpha \gamma q)}(1-q)\biggr] \\ q = {\alpha_1 \over 4\alpha \gamma^2 (1- \alpha_1 / \gamma )}, \hspace{7mm} {1\over 4\gamma^2} < q \leq 1 \hspace{20mm} \nonumber
+\begin{eqnarray}
+{dN_1 \over dt_1 d\alpha_1} = {2\pi r_0^2 c\over \alpha \gamma^2} \biggl[ 2q\ln q +(1+2q)(1-q)+{1\over 2}{(4\alpha \gamma q)^2 \over (1+4\alpha \gamma q)}(1-q)\biggr] \\
+q = {\alpha_1 \over 4\alpha \gamma^2 (1- \alpha_1 / \gamma )}, \hspace{7mm} {1\over 4\gamma^2} < q \leq 1 \hspace{20mm} \nonumber
+\end{eqnarray}
 $$
 
 #### Thomson Approxomation
